@@ -7,11 +7,23 @@ a{
     text-decoration: none
 }
 
+body{
+    background: #C7363D url(../images/wall.jpg) no-repeat center center;
+    background-size: cover;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 kbd{
     border:1px solid red;
     display: inline-block; 
-    width:4em; 
-    height: 4em; 
+    width: 60px; 
+    height: 52px; 
     text-transform: uppercase;
     position: relative;
 }
@@ -27,15 +39,65 @@ kbd:hover > button{
     display: inline-block;
 }
 
-#mainXXX > div.nth-child(2){
-    margin-left: 2em;
+#main > div:nth-child(2){
+    margin-left: -12px;
 }
 
-#mainXXX > div.nth-child(3){
-    margin-left: 4em;
+#main > div:nth-child(3){
+    margin-left: -94px;
 }
 
-#mainXXX{
+#main{
     text-align: center;
 }
 
+.wrapper{
+    background: rgba(255,255,255,0.35);
+    border-radius: 10px;
+    box-shadow: inset 0 3px 5px rgba(255,255,255,0.2), inset 0 1px 3px rgba(255,255,255,0.2), 0 5px 0 #afafaf;
+    margin: 0 auto;
+}
+
+.key{
+    -webkit-appearance: none;
+    background: linear-gradient(180deg, #fff 0%, #f2f2f2 100%);
+    border: 0;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px rgba(255,255,255,0.5), 0 2px 0 #c9c9c9, 0 2px 1px rgba(0,0,0,0.3), 0 2px 2px rgba(0,0,0,0.5);
+    cursor: pointer;
+    height: 52px;
+    margin: 3px 0 0 4px;
+    outline: 0;
+    position: relative;
+    width: 60px;
+    z-index: 2;
+    color: #9f9f9f;
+    font-family: 'Muli', 'Helvetica', sans-serif;
+    font-size: 20px;
+    position: relative;
+    }
+.key:active{
+    box-shadow: inset 0 2px 2px rgba(0,0,0,0.2), inset 0 2px 6px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.6);
+    margin: 3px 0 0 4px;
+  }
+  
+.row{
+    margin: 20px;
+  }
+.row .key{
+    margin: 0 10px;
+  }
+
+.key img{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 4px;
+    bottom: 2px;
+}
+
+.key .text{
+    position: absolute;
+    left: 4px;
+    top: 2px;
+}
