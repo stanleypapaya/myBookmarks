@@ -1,69 +1,81 @@
-*{
-    margin:0;
-    padding:0
+* {
+    margin: 0;
+    padding: 0
 }
 
-a{
+a {
     text-decoration: none
 }
 
-body{
+body {
     background: #C7363D url(../images/wall.jpg) no-repeat center center;
     background-size: cover;
 }
 
-main{
+main {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-kbd{
-    border:1px solid red;
-    display: inline-block; 
-    width: 60px; 
-    height: 52px; 
+kbd {
+    border: 1px solid red;
+    display: inline-block;
+    width: 60px;
+    height: 52px;
     text-transform: uppercase;
     position: relative;
 }
 
-kbd > button{
+kbd>button {
     position: absolute;
     right: 0;
     bottom: 0;
     display: none;
+    margin: 0;
+    padding: 2px;
+    background: linear-gradient(180deg, #fff 0%, #f2f2f2 100%);
+    border: 0;
+    border-radius: 1px;
+    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.5), 0 2px 0 #c9c9c9, 0 2px 1px rgba(0, 0, 0, 0.3), 0 2px 2px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    outline: none;
 }
 
-kbd:hover > button{
+kbd>button:active{
+    box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.2), inset 0 2px 6px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+kbd:hover>button {
     display: inline-block;
 }
 
-#main > div:nth-child(2){
+#main>div:nth-child(2) {
     margin-left: -12px;
 }
 
-#main > div:nth-child(3){
+#main>div:nth-child(3) {
     margin-left: -94px;
 }
 
-#main{
+#main {
     text-align: center;
 }
 
-.wrapper{
-    background: rgba(255,255,255,0.35);
+.wrapper {
+    background: rgba(255, 255, 255, 0.35);
     border-radius: 10px;
-    box-shadow: inset 0 3px 5px rgba(255,255,255,0.2), inset 0 1px 3px rgba(255,255,255,0.2), 0 5px 0 #afafaf;
+    box-shadow: inset 0 3px 5px rgba(255, 255, 255, 0.2), inset 0 1px 3px rgba(255, 255, 255, 0.2), 0 5px 0 #afafaf;
     margin: 0 auto;
 }
 
-.key{
+.key {
     -webkit-appearance: none;
     background: linear-gradient(180deg, #fff 0%, #f2f2f2 100%);
     border: 0;
     border-radius: 4px;
-    box-shadow: inset 0 1px 3px rgba(255,255,255,0.5), 0 2px 0 #c9c9c9, 0 2px 1px rgba(0,0,0,0.3), 0 2px 2px rgba(0,0,0,0.5);
+    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.5), 0 2px 0 #c9c9c9, 0 2px 1px rgba(0, 0, 0, 0.3), 0 2px 2px rgba(0, 0, 0, 0.5);
     cursor: pointer;
     height: 52px;
     margin: 3px 0 0 4px;
@@ -75,20 +87,22 @@ kbd:hover > button{
     font-family: 'Muli', 'Helvetica', sans-serif;
     font-size: 20px;
     position: relative;
-    }
-.key:active{
-    box-shadow: inset 0 2px 2px rgba(0,0,0,0.2), inset 0 2px 6px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.6);
-    margin: 3px 0 0 4px;
-  }
-  
-.row{
-    margin: 20px;
-  }
-.row .key{
-    margin: 0 10px;
-  }
+}
 
-.key img{
+.key:active {
+    box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.2), inset 0 2px 6px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255, 255, 255, 0.6);
+    margin: 3px 0 0 4px;
+}
+
+.row {
+    margin: 20px;
+}
+
+.row .key {
+    margin: 0 10px;
+}
+
+.key img {
     width: 20px;
     height: 20px;
     position: absolute;
@@ -96,7 +110,7 @@ kbd:hover > button{
     bottom: 2px;
 }
 
-.key .text{
+.key .text {
     position: absolute;
     left: 4px;
     top: 2px;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
   <link rel="stylesheet" href="./css/style.css">
   <title>我的导航</title>
 </head>
+
 <body>
   <header></header>
   <main>
@@ -15,89 +17,39 @@
   </main>
   <footer></footer>
   <script>
-    var keys = {
-      0: ['q','w','e','r','t','y','u','i','o','p'],
-      1: ['a','s','d','f','g','h','j','k','l'],
-      2: ['z','x','c','v','b','n','m'],
-      length: 3
-    } 
+    //1. 初始化数据
+    var hashA = init()
+    var keys = hashA['keys']
+    var hash = hashA['hash']
 
-    var hash = {
-      q: 'qq.com',
-      w: 'weibo.com',
-      e: 'ele.me',
-      r: 'renren.com',
-      t: 'taobao.com',
-      y: 'youtube.com',
-      u: undefined,
-      i: 'iqiyi.com',
-      o: undefined,
-      p: undefined,
-      a: 'alibaba.com',
-      s: undefined,
-      d: 'douban.com',
-      f: 'facebook.com',
-      g: 'google.com',
-      h: undefined,
-      j: 'jd.com',
-      k: undefined,
-      l: '6.cn',
-      z: 'zhihu.com',
-      x: 'xiecheng.com',
-      c: undefined,
-      v: undefined,
-      b: 'baidu.com',
-      n: undefined,
-      m: 'meituan.com'
-    }
 
-    // 取出 localStorage 中的 zzz 对应的 hash
-    var hashInLocalStorage = JSON.parse(localStorage.getItem('zzz') || 'null')
-    if(hashInLocalStorage){
-      hash = hashInLocalStorage 
-    }
-
+    //2. 生成键盘
     //遍历keys，生成 kbd 标签
     var index = 0
-    while(index < keys['length']){
-      var div = document.createElement('div')
-      div.className = 'row'
+    while (index < keys['length']) {
+      var div = tag('div', {
+        className: 'row'
+      })
+
       main.appendChild(div)
+
       var row = keys[index]
       var index2 = 0
-      while(index2 < row['length']){
-        var kbd = document.createElement('kbd')
-        var span = document.createElement('span')
-        span.textContent = row[index2]
-        span.className = 'text'
-        kbd.appendChild(span)
-        kbd.className = 'key'
-        var button = document.createElement('button')
-        button.textContent = '编辑'
-        button.id = row[index2]
-        var img = document.createElement('img')
-        if(hash[row[index2]]){
-          img.src = 'http://' + hash[row[index2]] +'/favicon.ico'
-        }else{
-          img.src = '//i.loli.net/2018/11/02/5bdc6ed4e3d73.png'
-        }
-        img.onerror = function(e){
-          e.target.src = '//i.loli.net/2018/11/02/5bdc6ed4e3d73.png'
-        }
+      while (index2 < row['length']) {
+        var span = tag('span', {
+          textContent: row[index2],
+          className: 'text'
+        })
 
-        
-        button.onclick = function(e){
-          var button2 = e['target']
-          var img2 = button2.previousSibling
-          var key = button2.id
-          var x = prompt('给我一个网址')
-          hash[key] = x //hash 变更
-          img2.src = 'http://' + x + '/favicon.ico'
-          img2.onerror = function(e){
-          e.target.src = '//i.loli.net/2018/11/02/5bdc6ed4e3d73.png'
-        }
-          localStorage.setItem('zzz', JSON.stringify(hash))
-        }
+        var img = createImage(hash[row[index2]])
+
+        var button = createButton(row[index2])
+
+        var kbd = tag('kbd', {
+          className: 'key'
+        })
+
+        kbd.appendChild(span)
         kbd.appendChild(img)
         kbd.appendChild(button)
         div.appendChild(kbd)
@@ -106,11 +58,109 @@
       index = index + 1
     }
 
-    document.onkeypress = function(e){
+
+    //3. 监听用户动作
+    document.onkeypress = function (e) {
       var key = e['key']
       var website = hash[key]
       window.open('http://' + website, '_blank')
     }
+
+
+    //4. 函数    
+    function getFromLocalStorage(name) {
+      return JSON.parse(localStorage.getItem(name) || 'null')
+    }
+
+    function tag(tagName, attributes) {
+      var element = document.createElement(tagName)
+      for (var key in attributes) { //key 为 className， Id, textContent
+        element[key] = attributes[key]
+      }
+      return element
+    }
+
+    function createButton(id) {
+      var button = tag('button', {
+        textContent: 'EDIT'
+      })
+      button.id = id
+      button.onclick = function (e) {
+        var button2 = e['target']
+        var img2 = button2.previousSibling
+        var key = button2.id
+        var x = prompt('给我一个网址')
+        if(x){
+          hash[key] = x //hash 变更
+          img2.src = 'http://' + x + '/favicon.ico'
+          img2.onerror = function (e) {
+          e.target.src = '//i.loli.net/2018/11/02/5bdc6ed4e3d73.png'
+          }
+          localStorage.setItem('zzz', JSON.stringify(hash))
+        } 
+      }
+      return button
+    }
+
+    function createImage(domain) {
+      var img = tag('img')
+      if (domain) {
+        img.src = 'http://' + domain + '/favicon.ico'
+      } else {
+        img.src = '//i.loli.net/2018/11/02/5bdc6ed4e3d73.png'
+      }
+      img.onerror = function (e) {
+        e.target.src = '//i.loli.net/2018/11/02/5bdc6ed4e3d73.png'
+      }
+      return img
+    }
+
+    function init() {
+      var keys = {
+        0: ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+        1: ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+        2: ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
+        length: 3
+      }
+      var hash = {
+        q: 'qzone.com',
+        w: 'weibo.com',
+        e: 'ele.me',
+        r: 'renren.com',
+        t: 'tmall.com',
+        y: 'youtube.com',
+        u: undefined,
+        i: 'iqiyi.com',
+        o: undefined,
+        p: undefined,
+        a: 'alibaba.com',
+        s: undefined,
+        d: 'douban.com',
+        f: 'facebook.com',
+        g: 'ganji.com',
+        h: undefined,
+        j: 'jingdong.com',
+        k: 'kmart.com',
+        l: 'linkedin.com',
+        z: 'zhihu.com',
+        x: 'xiecheng.com',
+        c: undefined,
+        v: undefined,
+        b: 'baidu.com',
+        n: undefined,
+        m: 'meitu.com'
+      }
+      // 取出 localStorage 中的 zzz 对应的 hash
+      var hashInLocalStorage = getFromLocalStorage('zzz')
+      if (hashInLocalStorage) {
+        hash = hashInLocalStorage
+      }
+      return {
+        'keys': keys,
+        'hash': hash
+      }
+    }
   </script>
 </body>
+
 </html>
