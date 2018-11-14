@@ -172,6 +172,9 @@
       document.onclick = function(e){
         var key2 = e.path[0].id
         var website2 = hash[key2]
+        if(website2 == undefined){
+          return
+        }
         window.open('http://' + website2, '_blank')
       }
     }
