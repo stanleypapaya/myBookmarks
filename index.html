@@ -60,7 +60,7 @@
           hash[key] = x //hash 变更
           img2.src = 'http://' + x + '/favicon.ico'
           img2.onerror = function (e) {
-            e.target.src = '//i.loli.net/2018/11/02/5bdc6ed4e3d73.png'
+          e.target.src = '//i.loli.net/2018/11/02/5bdc6ed4e3d73.png'
           }
           localStorage.setItem('zzz', JSON.stringify(hash))
         }
@@ -149,7 +149,8 @@
           var button = createButton(row[index2])
 
           var kbd = tag('kbd', {
-            className: 'key'
+            className: 'key',
+            id: keys[index][index2]
           })
 
           kbd.appendChild(span)
@@ -167,6 +168,11 @@
         var key = e['key']
         var website = hash[key]
         window.open('http://' + website, '_blank')
+      }
+      document.onclick = function(e){
+        var key2 = e.path[0].id
+        var website2 = hash[key2]
+        window.open('http://' + website2, '_blank')
       }
     }
   </script>
