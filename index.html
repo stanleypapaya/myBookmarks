@@ -58,7 +58,7 @@
         var x = prompt('给我一个网址')
         if (x) {
           hash[key] = x //hash 变更
-          img2.src = 'http://' + x + '/favicon.ico'
+          img2.src =  'http://icons.duckduckgo.com/ip2/'+ x +'.ico'
           img2.onerror = function (e) {
           e.target.src = '//i.loli.net/2018/11/02/5bdc6ed4e3d73.png'
           }
@@ -71,7 +71,7 @@
     function createImage(domain) {
       var img = tag('img')
       if (domain) {
-        img.src = 'http://' + domain + '/favicon.ico'
+        img.src = 'http://icons.duckduckgo.com/ip2/'+ domain +'.ico'
       } else {
         img.src = '//i.loli.net/2018/11/02/5bdc6ed4e3d73.png'
       }
